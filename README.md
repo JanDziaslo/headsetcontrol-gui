@@ -1,4 +1,4 @@
-# HeadsetControl GUI for Linux
+# HeadsetControl GUI
 
 A modern graphical user interface for [HeadsetControl](https://github.com/Sapd/HeadsetControl) with dark/light theme support and multi-language interface (English/Polish).
 
@@ -88,14 +88,14 @@ headsetcontrol --help
 
 #### Option A: Clone this repository
 ```bash
-git clone https://github.com/JanDziaslo/headsetcontrol-gui-linux.git
-cd headsetcontrol-gui-linux
+git clone https://github.com/JanDziaslo/headsetcontrol-gui.git
+cd headsetcontrol-gui
 python3 headsetcontrolGUI.py
 ```
 
 #### Option B: Download single file
 ```bash
-wget https://raw.githubusercontent.com/JanDziaslo/headsetcontrol-gui-linux/main/headsetcontrolGUI.py
+wget https://raw.githubusercontent.com/JanDziaslo/headsetcontrol-gui/main/headsetcontrolGUI.py
 python3 headsetcontrolGUI.py
 ```
 
@@ -216,8 +216,8 @@ sudo usermod -a -G input $USER
 
 ### Running from Source
 ```bash
-git clone https://github.com/JanDziaslo/headsetcontrol-gui-linux.git
-cd headsetcontrol-gui-linux
+git clone https://github.com/JanDziaslo/headsetcontrol-gui.git
+cd headsetcontrol-gui
 python3 headsetcontrolGUI.py
 ```
 
