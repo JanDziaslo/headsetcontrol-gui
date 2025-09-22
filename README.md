@@ -1,70 +1,80 @@
-# HeadsetControl GUI
+# HeadsetControl GUI - Nowoczesny Panel Sterowania
 
-A modern graphical user interface for [HeadsetControl](https://github.com/Sapd/HeadsetControl) with dark/light theme support and multi-language interface (English/Polish).
+Graficzny interfejs użytkownika dla HeadsetControl - narzędzia do kontroli bezprzewodowych słuchawek gamingowych.
 
-![HeadsetControl GUI Dark Theme](https://img.shields.io/badge/Theme-Dark%20%2F%20Light-blue)
-![Python](https://img.shields.io/badge/Python-3.7%2B-green)
-![Platform](https://img.shields.io/badge/Platform-Linux-orange)
-![License](https://img.shields.io/badge/License-MIT-red)
+![HeadsetControl GUI](https://img.shields.io/badge/Python-3.8%2B-blue)
+![CustomTkinter](https://img.shields.io/badge/GUI-CustomTkinter-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-## Features
+## 🎧 Obsługiwane Funkcje
 
-✨ **Modern GUI Interface**
-- Clean, intuitive design with tkinter
-- Dark and light theme support
-- Responsive layout with proper spacing
+- **Sidetone (Poziom słyszalności)** - Regulacja poziomu słyszenia własnego głosu (0-128)
+- **Equalizer** - Presety equalizera (0-3)
+- **Oświetlenie** - Włączanie/wyłączanie podświetlenia słuchawek
+- **Komunikaty głosowe** - Kontrola powiadomień dźwiękowych
+- **Wyciszenie mikrofonu** - Sterowanie stanem mikrofonu
+- **Poziom baterii** - Sprawdzanie stanu naładowania
+- **Identyfikacja urządzenia** - Opcjonalne podanie vendor:product ID
 
-🌐 **Multi-language Support**
-- English and Polish interface
-- Easy language switching
-- Automatic configuration saving
+## 🖥️ Interfejs
 
-🎛️ **Comprehensive Controls**
-- Device selection (vendorid:productid)
-- Sidetone level adjustment (0-128)
-- Equalizer preset selection (0-3)
-- Lights control (On/Off)
-- Voice prompts control (On/Off)
-- Microphone mute control (On/Off)
-- Battery level checking
+- **Nowoczesny design** - Ciemny/jasny motyw z zaokrąglonymi elementami
+- **Wielojęzyczność** - Polski i angielski
+- **Przewijanie kółkiem myszy** - Stabilne przewijanie na Linux/Windows/Mac
+- **Logi operacji** - Podgląd wykonywanych komend w czasie rzeczywistym
+- **Progress bar** - Wizualizacja postępu operacji
+- **Automatyczne czyszczenie** - Pole wyników czyści się przed każdą operacją
 
-💾 **Settings Persistence**
-- Automatically saves language and theme preferences
-- Restores last used settings on startup
-- Configuration stored in JSON format
+## 📋 Wymagania
 
-## Requirements
+### Wymagania systemowe
+- **Python 3.8+**
+- **HeadsetControl** - [Zainstaluj z GitHub](https://github.com/Sapd/HeadsetControl)
+- **Tkinter** - Zazwyczaj preinstalowane z Pythonem
 
-### System Requirements
-- **Operating System**: Linux (tested on Ubuntu/Kubuntu)
-- **Python**: 3.7 or higher
-- **HeadsetControl**: Must be installed and accessible via command line
+### Obsługiwane słuchawki
+Aplikacja działa ze wszystkimi słuchawkami obsługiwanymi przez HeadsetControl:
+- SteelSeries (Arctis seria)
+- Logitech (seria G)
+- Corsair (seria VOID)
+- HyperX
+- Razer
+- ROCCAT
+- Sennheiser
+- I wiele innych...
 
-### Python Dependencies
-- `tkinter` (usually included with Python)
-- `subprocess` (built-in)
-- `json` (built-in)
-- `os` (built-in)
+Pełna lista: [HeadsetControl README](https://github.com/Sapd/HeadsetControl#supported-headsets)
 
-## Installation
+## 🚀 Instalacja
 
-### 1. Install HeadsetControl
-
-First, you need to install HeadsetControl on your system:
-
-#### Option A: From Package Manager (Ubuntu/Debian)
+### 1. Pobierz kod źródłowy
 ```bash
-sudo apt update
-sudo apt install headsetcontrol
+git clone https://github.com/user/headsetcontrol-gui.git
+cd headsetcontrol-gui
 ```
 
-#### Option B: From Source
+### 2. Uruchom aplikację
 ```bash
-# Install dependencies
-sudo apt install build-essential cmake libhidapi-dev
+# Automatyczna instalacja i uruchomienie
+./run.sh
 
-# Clone and build HeadsetControl
-git clone https://github.com/Sapd/HeadsetControl.git
+# Lub ręcznie:
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python headsetcontrolGUI.py
+```
+
+### 3. Zainstaluj HeadsetControl (jeśli nie masz)
+```bash
+# Ubuntu/Debian
+sudo apt install headsetcontrol
+
+# Arch Linux
+yay -S headsetcontrol
+
+# Z kodu źródłowego
+git clone https://github.com/Sapd/HeadsetControl
 cd HeadsetControl
 mkdir build && cd build
 cmake ..
@@ -72,213 +82,165 @@ make
 sudo make install
 ```
 
-### 2. Install Python Dependencies
+## 🔧 Konfiguracja Autostartu
 
-#### Install tkinter (if not already installed)
+### Opcja 1: Desktop Entry (zalecane)
 ```bash
-sudo apt install python3-tk
+# Skopiuj plik .desktop do autostartu
+cp headsetcontrol-gui.desktop ~/.config/autostart/
+
+# WAŻNE: Edytuj ścieżkę w pliku .desktop
+nano ~/.config/autostart/headsetcontrol-gui.desktop
+# Zmień Exec= na swoją pełną ścieżkę
 ```
 
-#### Verify HeadsetControl installation
+### Opcja 2: Bezpośredni skrypt
 ```bash
-headsetcontrol --help
+# Nadaj uprawnienia wykonywania
+chmod +x start_gui.sh
+
+# Dodaj do autostartu przez GUI menedżera sesji lub:
+echo "/pełna/ścieżka/do/start_gui.sh --autostart" >> ~/.xprofile
 ```
 
-### 3. Download and Run GUI
-
-#### Option A: Clone this repository
+### Opcja 3: Systemd User Service
 ```bash
-git clone https://github.com/JanDziaslo/headsetcontrol-gui.git
-cd headsetcontrol-gui
-python3 headsetcontrolGUI.py
+# Utwórz service
+nano ~/.config/systemd/user/headsetcontrol-gui.service
+
+[Unit]
+Description=HeadsetControl GUI
+After=graphical-session.target
+
+[Service]
+Type=forking
+ExecStart=/pełna/ścieżka/do/start_gui.sh --autostart
+Restart=on-failure
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=default.target
+
+# Aktywuj service
+systemctl --user enable headsetcontrol-gui.service
+systemctl --user start headsetcontrol-gui.service
 ```
 
-#### Option B: Download single file
-```bash
-wget https://raw.githubusercontent.com/JanDziaslo/headsetcontrol-gui/main/headsetcontrolGUI.py
-python3 headsetcontrolGUI.py
+## 📁 Struktura Projektu
+
+```
+headsetcontrol-gui/
+├── headsetcontrolGUI.py          # Główny plik aplikacji
+├── requirements.txt              # Zależności Python
+├── run.sh                       # Prosty skrypt uruchamiający
+├── start_gui.sh                 # Skrypt autostartu z logowaniem
+├── headsetcontrol-gui.desktop   # Plik desktop entry
+├── headsetcontrol_config.json   # Konfiguracja (auto-generowany)
+└── README.md                    # Ta dokumentacja
 ```
 
-## Usage
+## 🎮 Użytkowanie
 
-### Basic Operation
+1. **Podłącz słuchawki** i upewnij się, że są wykryte przez system
+2. **Uruchom aplikację** przez `./run.sh` lub `./start_gui.sh`
+3. **Opcjonalnie podaj Device ID** (vendor:product) jeśli masz wiele urządzeń
+4. **Dostosuj ustawienia** przy pomocy suwaków i przełączników
+5. **Kliknij "Zastosuj ustawienia"** aby aplikować zmiany
+6. **Sprawdź logi** w sekcji "Wynik" na dole okna
 
-1. **Launch the application**:
-   ```bash
-   python3 headsetcontrolGUI.py
-   ```
-
-2. **Select your language** (English/Polish) from the dropdown
-
-3. **Choose theme** (Dark/Light) - Dark theme is default
-
-4. **Configure device** (optional):
-   - Enter your device ID in format `vendorid:productid`
-   - Leave empty to use default device
-
-5. **Adjust settings**:
-   - **Sidetone**: Use slider to set level (0-128)
-   - **Equalizer**: Choose preset (0-3)
-   - **Lights**: Turn headset lights On/Off
-   - **Voice Prompts**: Enable/disable voice notifications
-   - **Mic Mute**: Control microphone mute function
-
-6. **Apply settings**: Click "Apply Settings" to send commands to headset
-
-7. **Check battery**: Click "Check Battery" to see current battery level
-
-### Advanced Usage
-
-#### Finding Your Device ID
+### Znajdowanie Device ID
 ```bash
-headsetcontrol -?
-# Look for your device in the output and note the vendor:product ID
+# Lista urządzeń HeadsetControl
+headsetcontrol -l
+
+# Przykład wyniku:
+# Found SteelSeries Arctis 7 (1038:12ad)
+# Użyj: 1038:12ad w polu Device ID
 ```
 
-#### Command Line Equivalent
-The GUI generates commands equivalent to:
+## 🛠️ Rozwiązywanie Problemów
+
+### Aplikacja nie uruchamia się
 ```bash
-# Examples:
-headsetcontrol -s 64              # Set sidetone to 64
-headsetcontrol -l 1               # Turn lights on
-headsetcontrol -b                 # Check battery
-headsetcontrol -d 1234:5678 -s 32 # Use specific device and set sidetone
+# Sprawdź czy CustomTkinter jest zainstalowany
+python3 -c "import customtkinter; print('OK')"
+
+# Sprawdź logi
+tail -f ~/.headsetcontrol-gui.log
+
+# Sprawdź czy Python ma dostęp do GUI
+echo $DISPLAY
 ```
 
-## Configuration
+### HeadsetControl nie wykrywa słuchawek
+```bash
+# Sprawdź czy urządzenie jest podłączone
+lsusb | grep -i headset
 
-The application automatically creates a configuration file `headsetcontrol_config.json` in the same directory to store your preferences:
+# Uruchom HeadsetControl z debug
+headsetcontrol -b --debug
 
-```json
-{
-  "language": "en",
-  "theme": "dark"
+# Sprawdź uprawnienia (może wymagać sudo)
+sudo headsetcontrol -b
+```
+
+### Przewijanie kółkiem myszy nie działa
+- Upewnij się, że kursor jest nad zawartością okna
+- Zmień rozmiar okna jeśli jest za małe
+- Problem może występować w niektórych środowiskach Wayland
+
+### Błędy uprawnień
+```bash
+# Dodaj użytkownika do grupy audio
+sudo usermod -a -G audio $USER
+
+# Logout/login po zmianie grup
+```
+
+## 🧰 Rozwój
+
+### Uruchomienie w trybie debug
+```bash
+# Włącz verbose mode w HeadsetControl
+export HEADSETCONTROL_DEBUG=1
+python headsetcontrolGUI.py
+```
+
+### Dodawanie tłumaczeń
+Edytuj słownik `LANGUAGES` w `headsetcontrolGUI.py`:
+```python
+LANGUAGES = {
+    "pl": { ... },
+    "en": { ... },
+    "de": { ... }  # Nowy język
 }
 ```
 
-You can manually edit this file or use the GUI controls to change settings.
+## 📝 Licencja
 
-## Supported Devices
+MIT License - zobacz plik `LICENSE` dla szczegółów.
 
-This GUI works with any headset supported by HeadsetControl. Popular supported devices include:
+## 🤝 Wkład w projekt
 
-- SteelSeries Arctis series (7, 9, Pro, etc.)
-- Corsair Void series
-- Logitech G series (G933, G935, etc.)
-- HyperX Cloud series
-- And many more...
+1. Fork repository
+2. Utwórz branch funkcjonalności (`git checkout -b feature/AmazingFeature`)
+3. Commit zmian (`git commit -m 'Add some AmazingFeature'`)
+4. Push do branch (`git push origin feature/AmazingFeature`)
+5. Otwórz Pull Request
 
-For a complete list, check the [HeadsetControl documentation](https://github.com/Sapd/HeadsetControl#supported-headsets).
+## 🔗 Linki
 
-## Troubleshooting
+- [HeadsetControl](https://github.com/Sapd/HeadsetControl) - Podstawowe narzędzie CLI
+- [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter) - Nowoczesna biblioteka GUI
+- [Lista obsługiwanych słuchawek](https://github.com/Sapd/HeadsetControl#supported-headsets)
 
-### Common Issues
+## 📞 Wsparcie
 
-#### "headsetcontrol: command not found"
-```bash
-# Install HeadsetControl first
-sudo apt install headsetcontrol
-# OR build from source (see installation section)
-```
+Jeśli masz problemy:
+1. Sprawdź sekcję "Rozwiązywanie problemów" powyżej
+2. Sprawdź logi w `~/.headsetcontrol-gui.log`
+3. Otwórz issue na GitHub z logami i opisem problemu
+4. Dołącz informacje o systemie: `uname -a` i `python3 --version`
 
-#### "ModuleNotFoundError: No module named 'tkinter'"
-```bash
-# Install tkinter
-sudo apt install python3-tk
-```
-
-#### "No headset found"
-- Make sure your headset is connected
-- Try running `headsetcontrol -?` to see if your device is detected
-- Check if you need specific device ID with `-d vendorid:productid`
-
-#### Permission Issues
-```bash
-# You might need to add your user to appropriate groups
-sudo usermod -a -G audio $USER
-sudo usermod -a -G input $USER
-# Logout and login again
-```
-
-### Device-Specific Issues
-
-#### Device requires specific vendor:product ID
-1. Run `headsetcontrol -?` to find your device
-2. Use the format shown in the output (e.g., `1038:12ad`)
-3. Enter this in the "Device" field in the GUI
-
-#### Features not working
-- Not all features are supported by all devices
-- Check HeadsetControl documentation for your specific model
-- Some features may require firmware updates
-
-## Development
-
-### Running from Source
-```bash
-git clone https://github.com/JanDziaslo/headsetcontrol-gui.git
-cd headsetcontrol-gui
-python3 headsetcontrolGUI.py
-```
-
-### Adding New Languages
-1. Edit the `LANGUAGES` dictionary in `headsetcontrolGUI.py`
-2. Add your language code and translations
-3. Update the language combo box values
-
-### Contributing
-Pull requests are welcome! Please ensure:
-- Code follows Python best practices
-- Test on different Linux distributions
-- Update documentation as needed
-
-## Testing
-
-**Note**: This application has been tested only on Linux systems (Ubuntu/Kubuntu). While it should work on other Unix-like systems, Windows compatibility has not been tested.
-
-### Tested On
-- Ubuntu 20.04, 22.04, 24.04
-- Kubuntu 24.10
-- Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13
-
-### Test Your Setup
-```bash
-# Test HeadsetControl
-headsetcontrol -b
-
-# Test GUI
-python3 headsetcontrolGUI.py
-```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Credits
-
-- **HeadsetControl**: [Sapd/HeadsetControl](https://github.com/Sapd/HeadsetControl) - The core functionality
-- **GUI Development**: Created with Python tkinter
-- **Testing**: Community feedback and testing on various Linux distributions
-
-## Support
-
-If you encounter issues:
-
-1. Check this README for troubleshooting steps
-2. Verify HeadsetControl works independently: `headsetcontrol -b`
-3. Open an issue on GitHub with:
-   - Your Linux distribution and version
-   - Python version (`python3 --version`)
-   - HeadsetControl version (`headsetcontrol --version`)
-   - Complete error message
-   - Your headset model
-
-## Changelog
-
-### v1.0.0
-- Initial release
-- Dark/Light theme support
-- English/Polish language support
-- Core HeadsetControl functionality
-- Settings persistence
-- Linux compatibility tested
+---
+**HeadsetControl GUI v2.0** - Nowoczesny interfejs 2025 ✨

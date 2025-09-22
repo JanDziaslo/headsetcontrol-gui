@@ -147,3 +147,4 @@ Thumbs.db
 # Project specific
 *.pyc
 .pytest_cache/
+headsetcontrol_config.json
