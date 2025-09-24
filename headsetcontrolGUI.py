@@ -112,7 +112,7 @@ class ModernHeadsetControlGUI:
 
         # Zmienne dla kontrolek
         self.device_var = ctk.StringVar()
-        self.sidetone_var = ctk.IntVar(value=64)
+        self.sidetone_var = ctk.IntVar(value=0)
         self.equalizer_var = ctk.StringVar(value="0")
         self.lights_var = ctk.BooleanVar(value=True)
         self.voice_prompts_var = ctk.BooleanVar(value=True)
@@ -258,7 +258,7 @@ class ModernHeadsetControlGUI:
         )
         self.sidetone_slider.pack(side="left", padx=(20, 10), pady=10)
 
-        self.sidetone_value_label = ctk.CTkLabel(slider_frame, text="64", font=ctk.CTkFont(size=14, weight="bold"))
+        self.sidetone_value_label = ctk.CTkLabel(slider_frame, text="0", font=ctk.CTkFont(size=14, weight="bold"))
         self.sidetone_value_label.pack(side="left", padx=10, pady=10)
 
         # Equalizer
