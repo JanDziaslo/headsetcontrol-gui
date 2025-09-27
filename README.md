@@ -8,13 +8,16 @@ Graficzny interfejs użytkownika dla HeadsetControl - narzędzia do kontroli bez
 
 ## 🎧 Obsługiwane Funkcje
 
-- **Sidetone (Poziom słyszalności)** - Regulacja poziomu słyszenia własnego głosu (0-128)
-- **Equalizer** - Presety equalizera (0-3)
-- **Oświetlenie** - Włączanie/wyłączanie podświetlenia słuchawek
-- **Komunikaty głosowe** - Kontrola powiadomień dźwiękowych
-- **Wyciszenie mikrofonu** - Sterowanie stanem mikrofonu
-- **Poziom baterii** - Sprawdzanie stanu naładowania
-- **Identyfikacja urządzenia** - Opcjonalne podanie vendor:product ID
+- **Profile słuchawek** – wybierz model z listy, a aplikacja wyświetli tylko te ustawienia, które są obsługiwane przez dane urządzenie (wykorzystuje oficjalną tabelę HeadsetControl) i zapamiętuje ostatnio wybrany profil między uruchomieniami.
+- **Pamięć ustawień** – dla każdego profilu zapisywane są ostatnio użyte wartości suwaków, przełączników i pól tekstowych, dzięki czemu po ponownym uruchomieniu aplikacji lub zmianie profilu wracasz do swoich preferencji.
+- **Sidetone** – płynna regulacja słyszalności własnego głosu (0–128) z opcją włączenia tylko wtedy, gdy chcesz zastosować zmianę.
+- **Equalizer** – presety (0–3), pełna krzywa equalizera oraz equalizer parametryczny (częstotliwość, zysk, Q, typ filtra).
+- **Światła i komunikaty** – sterowanie podświetleniem, komunikatami głosowymi, dźwiękiem powiadomień oraz funkcją „rotate to mute”.
+- **ChatMix oraz czas bezczynności** – szybka korekta balansu pomiędzy grą a czatem oraz ustawienie automatycznego wyłączania słuchawek.
+- **Mikrofon** – zmiana głośności mikrofonu oraz jasności diody LED informującej o wyciszeniu.
+- **Limiter głośności i Bluetooth** – aktywacja ogranicznika głośności, włączanie Bluetooth po starcie oraz regulacja głośności połączeń Bluetooth.
+- **Poziom baterii** – przycisk baterii jest automatycznie włączony tylko dla urządzeń, które udostępniają tę informację.
+- **Opcjonalny identyfikator urządzenia** – możliwość wskazania konkretnego dongla (vendor:product ID) bez utraty prostoty obsługi.
 
 ## 🖥️ Interfejs
 
