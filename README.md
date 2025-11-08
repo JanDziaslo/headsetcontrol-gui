@@ -52,7 +52,7 @@ Pełna lista: [HeadsetControl README](https://github.com/Sapd/HeadsetControl#sup
 
 ### 1. Pobierz kod źródłowy
 ```bash
-git clone https://github.com/user/headsetcontrol-gui.git
+git clone https://github.com/JanDziaslo/headsetcontrol-gui.git
 cd headsetcontrol-gui
 ```
 
@@ -83,50 +83,6 @@ mkdir build && cd build
 cmake ..
 make
 sudo make install
-```
-
-## 🔧 Konfiguracja Autostartu
-
-### Opcja 1: Desktop Entry (zalecane)
-```bash
-# Skopiuj plik .desktop do autostartu
-cp headsetcontrol-gui.desktop ~/.config/autostart/
-
-# WAŻNE: Edytuj ścieżkę w pliku .desktop
-nano ~/.config/autostart/headsetcontrol-gui.desktop
-# Zmień Exec= na swoją pełną ścieżkę
-```
-
-### Opcja 2: Bezpośredni skrypt
-```bash
-# Nadaj uprawnienia wykonywania
-chmod +x start_gui.sh
-
-# Dodaj do autostartu przez GUI menedżera sesji lub:
-echo "/pełna/ścieżka/do/start_gui.sh --autostart" >> ~/.xprofile
-```
-
-### Opcja 3: Systemd User Service
-```bash
-# Utwórz service
-nano ~/.config/systemd/user/headsetcontrol-gui.service
-
-[Unit]
-Description=HeadsetControl GUI
-After=graphical-session.target
-
-[Service]
-Type=forking
-ExecStart=/pełna/ścieżka/do/start_gui.sh --autostart
-Restart=on-failure
-Environment=DISPLAY=:0
-
-[Install]
-WantedBy=default.target
-
-# Aktywuj service
-systemctl --user enable headsetcontrol-gui.service
-systemctl --user start headsetcontrol-gui.service
 ```
 
 ## 📁 Struktura Projektu
@@ -246,4 +202,4 @@ Jeśli masz problemy:
 4. Dołącz informacje o systemie: `uname -a` i `python3 --version`
 
 ---
-**HeadsetControl GUI v2.0** - Nowoczesny interfejs 2025 ✨
+**HeadsetControl GUI v1.1.0** - Nowoczesny interfejs 2025 ✨
